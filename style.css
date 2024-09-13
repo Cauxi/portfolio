@@ -384,12 +384,12 @@
     font-size: 3rem;
   }
 
-  footer svg {
+  footer ul li svg {
     width: 40px;
     fill: var(--white);
   }
 
-  footer a:hover svg {
+  footer ul li a:hover svg {
     fill: var(--purple);
   }
 }
