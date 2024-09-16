@@ -393,3 +393,70 @@
     fill: var(--purple);
   }
 }
+@layer projects {
+  .section-projects {
+    background-color: var(--black);
+    padding: 6rem 0 4rem 0;
+    color: var(--white);
+  }
+
+  figure {
+    display: grid;
+    grid-template-rows: 1fr 100px;
+  }
+
+  figure img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+
+  figure a {
+    color: var(--white);
+    text-decoration: none;
+    grid-row: 1/3;
+    grid-column: 1/2;
+  }
+
+  figure a:hover {
+    color: var(--purple);
+  }
+
+  figcaption {
+    background-color: var(--black);
+    opacity: 0.8;
+    text-align: center;
+    grid-row: 2/3;
+    grid-column: 1/2;
+  }
+
+  figcaption h3 {
+    margin-bottom: 0;
+  }
+
+  figcaption ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 2rem 0;
+    font-family: var(--mono);
+    font-size: var(--small);
+  }
+  figcaption li {
+    display: inline-block;
+  }
+
+  .topgrid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+  }
+
+  .topgrid figure:first-child {
+    grid-row: span 2;
+  }
+
+  .topgrid h3 {
+    margin-bottom: 0;
+    font-size: var(--h5);
+  }
+}
