@@ -1,18 +1,22 @@
 @layer base {
   :root {
+    /* colors */
     --black: #000501;
-    --white: #ffffff;
     --tan: #b6b57b;
     --green: #31b28a;
     --lightgreen: #8cdfc5;
     --red: #ff4404;
+    --white: #ffffff;
     --purple: blueviolet;
 
+    /* font families */
     --main: "Lato", sans-serif;
     --heading: "Josefin Sans", sans-serif;
-    --mono: "Fira Mono", monospace;
-    --base-size: 1rem;
-    --scale: 1.2;
+    --mono: "Fira mono", monospace;
+
+    /* type scale */
+    --base-size: 1.2rem;
+    --scale: 1.25;
     --h1: calc(var(--h2) * var(--scale));
     --h2: calc(var(--h3) * var(--scale));
     --h3: calc(var(--h4) * var(--scale));
@@ -22,15 +26,42 @@
     --small: calc(var(--base-size) / var(--scale));
   }
 
-  body {
-    font-family: var(--main);
-    margin: 0;
-    padding: 0;
-    font-size: var(--base-size);
-    line-height: 1.5;
+  /* border box model: https://css-tricks.com/box-sizing/ */
+  html {
+    box-sizing: border-box;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+
+  /* h/t Scott O'Hara https://css-tricks.com/inclusively-hidden/ */
+  .sr-only:not(:focus):not(:active) {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+
+  body {
+    font-family: var(--main);
+    line-height: 1.5;
+    font-size: var(--base-size);
+    margin: 0;
+    padding: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--heading);
     text-transform: uppercase;
   }
@@ -59,35 +90,19 @@
     font-size: var(--h6);
   }
 
-  a {
-    color: var(--green);
-  }
-
-  a:hover {
-    text-decoration: none;
-  }
-
-  img {
-    max-width: 100%;
-  }
-
-  figure {
-    padding: 0;
-    margin: 0;
-  }
-
   .mono {
     font-family: var(--mono);
   }
 
   .colors {
     display: flex;
-    gap: 20px;
+    /* you could do this with grid as well, but you may need a few more lines of code */
   }
 
-  .colors > * {
+  .colors>* {
     width: 50px;
     height: 50px;
+    margin-right: 20px;
     border: 1px solid black;
   }
 
@@ -115,24 +130,25 @@
     background-color: var(--red);
   }
 
-  html {
-    box-sizing: border-box;
-  }
-  *,
-  *::before,
-  *::after {
-    box-sizing: inherit;
+  .purple {
+    background-color: var(--purple);
   }
 
-  /* h/t Scott O'Hara https://css-tricks.com/inclusively-hidden/ */
-  .sr-only:not(:focus):not(:active) {
-    clip: rect(0 0 0 0);
-    clip-path: inset(50%);
-    height: 1px;
-    overflow: hidden;
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
+  a {
+    color: var(--purple);
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  figure {
+    margin: 0;
+    padding: 0;
   }
 
   .container {
@@ -143,9 +159,9 @@
 
   .button {
     display: inline-block;
-    background: var(--purple);
+    background-color: var(--purple);
     color: var(--white);
-    padding: 0.8rem;
+    padding: 1rem 0.8rem 0.8rem 0.8rem;
     border-radius: 5px;
     text-decoration: none;
     font-family: var(--heading);
@@ -153,7 +169,6 @@
     text-transform: uppercase;
     font-weight: 600;
     line-height: 1;
-    margin: 0.5rem;
     transition: background 0.3s ease;
   }
 
@@ -161,8 +176,32 @@
     background: #511ca7;
     color: white;
   }
-
 }
+
+@layer intro {
+  .intro {
+    padding: 4rem 0 10rem 0;
+    background-image: url(../img/fem-aurora.jpg), url(../img/fem-comet.jpg);
+    background-repeat: repeat-x, no-repeat;
+    background-position: bottom center, 86% 18%;
+    color: var(--white);
+  }
+
+  .intro a {
+    color: var(--white);
+  }
+
+  .intro h2 {
+    text-transform: uppercase;
+  }
+
+  .name {
+    font-weight: 700;
+    font-size: var(--h4);
+    color: blueviolet;
+  }
+}
+
 @layer header {
   header {
     display: flex;
@@ -170,25 +209,28 @@
     justify-content: space-between;
     align-items: baseline;
     margin-bottom: 6rem;
-    margin-left:20px;
-    margin-right:20px ;
   }
 
   header h1 {
     font-size: var(--h3);
+    color: var(--lightgreen);
     font-weight: 300;
     margin: 0;
   }
 
-  header h1 a {
-    color: var(--white);
+  .intro header a {
     text-decoration: none;
+    color: var(--white);
+  }
+
+  .intro header a:hover {
+    color: var(--purple);
   }
 
   header svg {
     width: 30px;
     fill: var(--white);
-    margin-top: -0.4rem;
+    margin-top: 0.5rem;
   }
 
   header a:hover svg {
@@ -198,16 +240,8 @@
   nav {
     font-family: var(--heading);
     font-weight: 600;
-  }
-
-  nav .button {
-    padding: .6rem 0.4rem 0.4rem 0.4rem;
-    margin-top: -1rem;
-    color: var(--black);
-  }
-
-  nav .button:hover {
-    color: var(--white);
+    margin: 0;
+    padding: 0;
   }
 
   nav ul {
@@ -216,15 +250,21 @@
     list-style-type: none;
     display: flex;
     flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
     gap: 2rem;
   }
 
-  nav a {
-    text-decoration: none;
-    color: var(--white);
+  .intro nav .button {
+    padding: 0.6rem 0.4rem 0.4rem 0.4rem;
+    color: var(--black);
   }
 
-  @media (max-width: 830px) {
+  .intro nav .button:hover {
+    color: var(--black);
+  }
+
+  @media (max-width: 900px) {
     header {
       justify-content: center;
     }
@@ -235,6 +275,7 @@
       margin-bottom: 2rem;
     }
   }
+
   @media (max-width: 640px) {
     header {
       justify-content: space-between;
@@ -249,31 +290,34 @@
       font-size: 3rem;
       line-height: 1;
       border: 0;
-      background-color: transparent;
-      color: var(--white)
+      background: transparent;
+      color: var(--white);
     }
 
     header button:hover {
-      color: var(--green)
+      color: var(--purple);
     }
 
     header button::after {
       content: "\2630";
     }
 
+    /* menu that appears when hamburger is clicked */
     nav {
       position: fixed;
       top: 0;
       right: 200%;
       width: 100vw;
       height: 100vh;
+      opacity: 0;
       background: #fff;
       padding-top: 20%;
-      transition: right 0s 0.5 opacity 0.5s;
+      transition: right 0s 0.5s, opacity 0.5s;
     }
 
-    button:focus + nav,
-    button:focus-within + nav {
+    /* trigger for animation - pulls down nav box */
+    button:focus+nav,
+    button:focus-within+nav {
       right: 0;
       opacity: 1;
       transition: right 0s, opacity 0.5s;
@@ -287,26 +331,38 @@
       transition: top 0.5s;
     }
 
-    button:focus + nav ul,
-    button:focus-within + nav ul {
+    /* trigger for animation - makes the links in motion */
+    button:focus+nav ul,
+    button:focus-within+nav ul {
       top: 0;
     }
 
-    nav a:any-link{
+    /* styling for links and SVGs in the mobile menu */
+    nav a:any-link:not(.button) {
       display: block;
       padding: 1.5rem;
-      color: var(--black)
+      color: var(--purple);
     }
 
+    nav a svg {
+      fill: var(--purple);
+    }
+
+    nav a:hover,
+    nav a svg:hover {
+      color: var(--tan);
+      fill: var(--tan);
+    }
+
+    /* keep spacing even between link items */
     nav .button {
       margin-top: 1.5rem;
-      display: inline-block;
-      color: var(--black);
     }
 
+    /* sets up the close icon - clicking anywhere not on a link will close the menu */
     nav ul::after {
       content: "\2716";
-      color: var(--green);
+      color: var(--purple);
       display: block;
       position: absolute;
       top: 0.125rem;
@@ -314,86 +370,9 @@
       font-size: 3rem;
       line-height: 1;
     }
-    nav a svg {
-      fill: var(--purple);
-    }
-
-    nav a:hover,
-    nav a svg:hover {
-      color:var(tan);
-      fill:var(tan);
-    }
-
-  }
-
-
-}
-@layer intro {
-  .intro {
-    background-image: url(https://assets.codepen.io/296057/fem-comet.jpg);
-    background-repeat: no-repeat;
-    background-position: 86% 20%;
-    color: var(--white);
-    padding: 4rem 0;
-  }
-
-  .intro a {
-    color: var(--white);
-
-  }
-
-  .name {
-    font-weight: 700;
-    /* -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: var(--white); */
-    color: blueviolet;
-    font-size: var(--h3);
-  }
-
-}
-@layer contact {
-  .contact {
-    text-align: center;
-    padding: 6rem 0;
-    background: var(--black) url(https://assets.codepen.io/296057/fem-aurora.jpg) center center;
-    /* background-repeat: no-repeat; */
-    color: var(--white);
-  }
-
-  .contact p:last-child {
-    margin-top: 3rem;
-  }
-
-}
-@layer footer {
-  footer {
-    text-align: center;
-    padding: 6rem 0;
-    background: var(--black) url("https://assets.codepen.io/296057/fem-stars.jpg") no-repeat center center;
-    background-size: cover;
-    color: var(--white);
-  }
-
-  footer ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 2rem 0;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    gap: 3rem;
-    font-size: 3rem;
-  }
-
-  footer ul li svg {
-    width: 40px;
-    fill: var(--white);
-  }
-
-  footer ul li a:hover svg {
-    fill: var(--purple);
   }
 }
+
 @layer projects {
   .section-projects {
     background-color: var(--black);
@@ -433,6 +412,7 @@
 
   figcaption h3 {
     margin-bottom: 0;
+    font-size: var(--h5);
   }
 
   figcaption ul {
@@ -440,8 +420,10 @@
     padding: 0;
     margin: 0 0 2rem 0;
     font-family: var(--mono);
+    text-transform: uppercase;
     font-size: var(--small);
   }
+
   figcaption li {
     display: inline-block;
   }
@@ -456,11 +438,6 @@
     grid-row: span 2;
   }
 
-  .topgrid h3 {
-    margin-bottom: 0;
-    font-size: var(--h5);
-  }
-
   .bottomgrid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -468,13 +445,13 @@
     margin: 2rem 0;
   }
 
-  a {
+  .bottomgrid a {
     text-decoration: none;
     color: var(--white);
+    text-align: center;
   }
 
   @media (max-width: 992px) {
-
     .topgrid {
       display: block;
     }
@@ -487,11 +464,11 @@
       display: flex;
       flex-flow: row wrap;
       justify-content: center;
-      align-content: cent;
+      align-content: center;
       gap: 6rem 2rem;
     }
 
-    .bottomgrid > * {
+    .bottomgrid>* {
       flex-basis: 30%;
     }
 
@@ -502,10 +479,9 @@
     }
   }
 
-  @media (max-width: 666px) {
-
+  @media (max-width: 667px) {
     .bottomgrid {
-      gap:2rem;
+      gap: 2rem;
     }
 
     .bottomgrid a {
@@ -524,8 +500,48 @@
       font-size: var(--base-size);
     }
   }
+}
 
+@layer contact {
+  .section-contact {
+    text-align: center;
+    padding: 6rem 0;
+    background: var(--black) url("../img/fem-aurora.jpg") center center;
+    color: var(--white);
+  }
 
+  .section-contact p:last-child {
+    margin-top: 3rem;
+  }
+}
 
+@layer footer {
+  footer {
+    text-align: center;
+    padding: 6rem 0;
+    background: var(--black) url("../img/fem-stars.jpg") no-repeat center center;
+    background-size: cover;
+    color: var(--white);
+  }
+
+  footer ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 2rem 0;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: 3rem;
+    font-size: 3rem;
+  }
+
+  footer svg {
+    width: 40px;
+    fill: var(--white);
+  }
+
+  footer a:hover svg {
+    fill: var(--purple);
+  }
 
 }
