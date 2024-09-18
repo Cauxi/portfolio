@@ -163,50 +163,14 @@
   }
 
 }
-@layer intro {
-  .intro {
-    background-image: url(https://assets.codepen.io/296057/fem-comet.jpg);
-    background-repeat: no-repeat;
-    background-position: 86% 20%;
-    color: var(--white);
-    padding: 4rem 0;
-  }
-
-  .intro a {
-    color: var(--white);
-
-  }
-
-  .name {
-    font-weight: 700;
-    /* -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: var(--white); */
-    color: blueviolet;
-    font-size: var(--h3);
-  }
-
-}
-@layer contact {
-  .contact {
-    text-align: center;
-    padding: 6rem 0;
-    background: var(--black) url(https://assets.codepen.io/296057/fem-aurora.jpg) center center;
-    /* background-repeat: no-repeat; */
-    color: var(--white);
-  }
-
-  .contact p:last-child {
-    margin-top: 3rem;
-  }
-
-}
-@layer nav {
+@layer header {
   header {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
     align-items: baseline;
-    margin-left:20px ;
+    margin-bottom: 6rem;
+    margin-left:20px;
     margin-right:20px ;
   }
 
@@ -228,7 +192,7 @@
   }
 
   header a:hover svg {
-    fill: var(--green);
+    fill: var(--purple);
   }
 
   nav {
@@ -362,6 +326,43 @@
 
   }
 
+
+}
+@layer intro {
+  .intro {
+    background-image: url(https://assets.codepen.io/296057/fem-comet.jpg);
+    background-repeat: no-repeat;
+    background-position: 86% 20%;
+    color: var(--white);
+    padding: 4rem 0;
+  }
+
+  .intro a {
+    color: var(--white);
+
+  }
+
+  .name {
+    font-weight: 700;
+    /* -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: var(--white); */
+    color: blueviolet;
+    font-size: var(--h3);
+  }
+
+}
+@layer contact {
+  .contact {
+    text-align: center;
+    padding: 6rem 0;
+    background: var(--black) url(https://assets.codepen.io/296057/fem-aurora.jpg) center center;
+    /* background-repeat: no-repeat; */
+    color: var(--white);
+  }
+
+  .contact p:last-child {
+    margin-top: 3rem;
+  }
 
 }
 @layer footer {
