@@ -136,7 +136,7 @@
   }
 
   .container {
-    max-width: 1200px;
+    max-width: 1600px;
     margin: 0 auto;
     padding: 0 1rem;
   }
@@ -459,4 +459,12 @@
     margin-bottom: 0;
     font-size: var(--h5);
   }
+
+  .bottomgrid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
 }
